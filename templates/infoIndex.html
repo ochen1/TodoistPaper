@@ -14,7 +14,16 @@
 <body>
 <div id="content-main">
     {% for li in litems %}
-    <section class="todo-item">
+    <section class="todo-item {{ 'done' if li['done'] else '' }}">
+        {% if li['done'] %}
+        <img    class="icon todo-item-name-prefix"
+                src="https://github.com/google/material-design-icons/blob/master/png/toggle/check_box/materialicons/48dp/1x/baseline_check_box_black_48dp.png?raw=true"
+                alt="done">
+        {% else %}
+        <img    class="icon todo-item-name-prefix"
+                src="https://github.com/google/material-design-icons/blob/master/png/toggle/check_box_outline_blank/materialicons/48dp/1x/baseline_check_box_outline_blank_black_48dp.png?raw=true"
+                alt="not done">
+        {% endif %}
         <div class="todo-item-name">
             <span class="todo-item-name_en">
                 {{ li['name'] }}
@@ -25,22 +34,26 @@
         </div>
         <div class="todo-item-meta-container">
             {% if li['due'] %}
-            <!-- <i class="icon-calendar">&#xE935;</i> -->
-            <img    class="icon"
-                    src="https://github.com/google/material-design-icons/blob/master/png/action/calendar_today/materialicons/48dp/1x/baseline_calendar_today_black_48dp.png?raw=true"
-                    alt="due">
-            <span class="todo-item-due-meta">
-                {{ li['due'] }}
+            <span class="todo-item-meta-item">
+                <!-- <i class="icon-calendar">&#xE935;</i> -->
+                <img    class="icon"
+                        src="https://github.com/google/material-design-icons/blob/master/png/action/calendar_today/materialicons/48dp/1x/baseline_calendar_today_black_48dp.png?raw=true"
+                        alt="due">
+                <span class="todo-item-due-meta">
+                    {{ li['due'] }}
+                </span>
             </span>
             {% endif %}
 
             {% if li['time_required'] %}
-            <!-- <i class="icon-clock">&#xE8B5;</i> -->
-            <img    class="icon"
-                    src="https://github.com/google/material-design-icons/blob/master/png/action/schedule/materialicons/48dp/1x/baseline_schedule_black_48dp.png?raw=true"
-                    alt="time required">
-            <span class="todo-item-time-meta">
-                {{ timedelta2readable(seconds=li['time_required']) }}
+            <span class="todo-item-meta-item">
+                <!-- <i class="icon-clock">&#xE8B5;</i> -->
+                <img    class="icon"
+                        src="https://github.com/google/material-design-icons/blob/master/png/action/schedule/materialicons/48dp/1x/baseline_schedule_black_48dp.png?raw=true"
+                        alt="time required">
+                <span class="todo-item-time-meta">
+                    {{ timedelta2readable(seconds=li['time_required']) }}
+                </span>
             </span>
             {% endif %}
         </div>

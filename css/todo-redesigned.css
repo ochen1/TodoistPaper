@@ -49,6 +49,10 @@ div#content-main > .todo-item > .todo-item-meta-container span {
     line-height: 1em;
 }
 
+.todo-item-meta-item:not(:last-child) {
+    margin-right: 2ch;
+}
+
 .icon {
     display: inline;
     height: 16px;
@@ -56,7 +60,22 @@ div#content-main > .todo-item > .todo-item-meta-container span {
     top: 2px
 }
 
+.icon.todo-item-name-prefix {
+    position: relative;
+    top: 5px;
+    float: left;
+    margin-right: 0.4ch;
+}
+
 /* i[class^="icon"] {
     font-family: 'Material Icons';
     font-style: normal;
 } */
+
+div#content-main > .todo-item.done {
+    opacity: 80%;
+}
+
+div#content-main > .todo-item.done * {
+    text-decoration: line-through;
+}
