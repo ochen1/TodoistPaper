@@ -37,7 +37,7 @@ def main():
                 'perpage': perpage,
                 'first_page_url': '/?after=%i&perpage=%i' % (0, perpage),
                 'last_page_url': '/?after=%i&perpage=%i' % (len(db['items']) - len(db['items']) % perpage, perpage),
-                'prev_page_url': '/?after=%i&perpage=%i' % (max([0, start - perpage]), perpage),
+                'prev_page_url': '/?after=%i&perpage=%i' % (max(0, start - perpage), perpage),
                 'next_page_url': '/?after=%i&perpage=%i' % (end + 1 if end + 1 < len(db['items']) else start, perpage)
             }
         )
