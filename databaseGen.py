@@ -50,7 +50,8 @@ def todoistitem2dict(item):
         'priority': item['priority'],
         'parent-project': item['project_id'],
         'done': False if item['date_completed'] is None else True,
-        'date_completed': item['date_completed'],
+        'date_completed': ' '.join(item['date_completed'].rstrip('Z').split('T')) if item['date_completed'] is not
+                                                                                     None else item['date_completed'],
         'time_required': time_required,
         'computer_time_required': computer_time_required
     }

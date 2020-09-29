@@ -78,6 +78,17 @@
                 </span>
             </span>
             {% endif %}
+
+            {% if li['date_completed'] %}
+            <span class="todo-item-meta-item">
+                <img    class="icon"
+                        src="https://github.com/google/material-design-icons/blob/master/png/action/assignment_turned_in/materialicons/48dp/1x/baseline_assignment_turned_in_black_48dp.png?raw=true"
+                        alt="date completed">
+                <span class="todo-item-time-meta">
+                    {{ li['date_completed'] }}
+                </span>
+            </span>
+            {% endif %}
         </div>
     </section>
     {% endfor %}
