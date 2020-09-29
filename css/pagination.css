@@ -1,0 +1,23 @@
+.pager {
+    display: block;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.pager > a.nav-btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.5ch;
+    line-height: 1ch;
+    border-radius: 100%;
+    font-size: 32pt;
+    background: #616161;
+    /* TODO: add box-shadow */
+    color: #fafafa;
+    font-family: monospace;
+    text-align: center;
+}
+
+.pager > a.nav-btn:visited {
+    color: #fafafa;
+}

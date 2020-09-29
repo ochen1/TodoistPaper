@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todoist Paper</title>
+    <link rel="stylesheet" href="/css/loading.css" type="text/css">
+    <link rel="stylesheet" href="/css/index.css" type="text/css">
+    <link rel="stylesheet" href="/css/todo.css" type="text/css">
+    <link rel="stylesheet" href="/css/language-support.css" type="text/css">
+    <link rel="stylesheet" href="/css/pagination.css" type="text/css">
+</head>
+<body>
+<div id="content-main">
+    {% for li in litems %}
+    <section class="todo-item">
+        <span class="todo-item-name_en">{{ li['name'] }}</span>
+        <span class="lang-zh todo-item-name_zh">{{ li['name-zh'] }}</span>
+    </section>
+    {% endfor %}
+</div>
+<div class="pager">
+    <a id="pager-most-previous" href="{{ pagination['first_page_url'] }}" class="nav-btn nav-most-previous">«</a>
+    <a id="pager-previous" href="{{ pagination['prev_page_url'] }}" class="nav-btn nav-previous">‹</a>
+    <a id="pager-next" href="{{ pagination['next_page_url'] }}" class="nav-btn nav-next">›</a>
+    <a id="pager-most-next" href="{{ pagination['last_page_url'] }}" class="nav-btn nav-most-next">»</a>
+    <br>
+    <span>Page {{ pagination.page }} / {{ pagination.totalPages }}</span>
+</div>
+
+<footer>
+    <span>
+        Todoist Paper v0.0.1
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        &copy; Oliver Chen, 2020
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        Last sync: {{ currTime() }}
+    </span>
+</footer>
+<!--
+Loading sign sometimes not removed
+<div id="overlay-loading">
+    <span>Loading</span>
+</div>
+-->
+<!-- <script src="/js/loading.js" type="application/javascript"></script> -->
+<!--<script src="/js/index.js" type="application/javascript"></script>-->
+<!--<script src="/js/height-api.js" type="application/javascript"></script>-->
+<!--<script src="/js/pagination.js" type="application/javascript"></script>-->
+<script>
+    document.body.addEventListener('touchstart', function(e){ e.preventDefault(); });
+</script>
+</body>
+</html>

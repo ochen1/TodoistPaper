@@ -1,0 +1,45 @@
+@import "/css/todo-done.css";
+
+div#content-main {
+    margin: 1vh 2vw;
+    padding: 2vh 2vw;
+    border: solid 2px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    min-height: 50vh;
+    overflow-y: hidden;
+}
+
+div#content-main > .todo-item {
+    /*border: solid 2px #ffffff;*/
+    border-radius: 4px;
+    padding: 0.6em 1ch;
+    background: rgba(255, 255, 255, 0.9);
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+div#content-main > .todo-item:after {
+    clear: both;
+    content: ' ';
+    display: table;
+}
+
+
+div#content-main > .todo-item:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+div#content-main > .todo-item span {
+    line-height: 1.25em;
+    margin: 0.2em 0;
+}
+
+div#content-main > .todo-item span:nth-of-type(1) {
+    float: left;
+}
+
+div#content-main > .todo-item span:nth-of-type(2) {
+    float: right;
+}
