@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, send_from_directory
 from time import time, strftime
+from datetime import timedelta
 
 from json import load as loadJSON
 
@@ -19,7 +20,7 @@ def main():
         )
         perpage = request.args.get(
             'perpage',
-            default=8,
+            default=10,
             type=int
         )
         end = min([
@@ -39,7 +40,8 @@ def main():
                 'last_page_url': '/?after=%i&perpage=%i' % (len(db['items']) - len(db['items']) % perpage, perpage),
                 'prev_page_url': '/?after=%i&perpage=%i' % (max(0, start - perpage), perpage),
                 'next_page_url': '/?after=%i&perpage=%i' % (end + 1 if end + 1 < len(db['items']) else start, perpage)
-            }
+            },
+            timedelta2readable=lambda seconds: str(timedelta(seconds=seconds))
         )
 
 
