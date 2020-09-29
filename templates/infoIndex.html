@@ -33,6 +33,17 @@
             </span>
         </div>
         <div class="todo-item-meta-container">
+            {% if li['priority'] != 1 %}
+            <span class="todo-item-meta-item">
+                <img    class="icon"
+                        src="https://github.com/google/material-design-icons/blob/master/png/notification/priority_high/materialicons/48dp/1x/baseline_priority_high_black_48dp.png?raw=true"
+                        alt="priority">
+                <span class="todo-item-time-meta">
+                    {{ 5 - li['priority'] }}
+                </span>
+            </span>
+            {% endif %}
+
             {% if li['due'] %}
             <span class="todo-item-meta-item">
                 <!-- <i class="icon-calendar">&#xE935;</i> -->
@@ -64,17 +75,6 @@
                         alt="computer time required">
                 <span class="todo-item-time-meta">
                     {{ timedelta2readable(seconds=li['computer_time_required']) }}
-                </span>
-            </span>
-            {% endif %}
-
-            {% if li['priority'] != 1 %}
-            <span class="todo-item-meta-item">
-                <img    class="icon"
-                        src="https://github.com/google/material-design-icons/blob/master/png/notification/priority_high/materialicons/48dp/1x/baseline_priority_high_black_48dp.png?raw=true"
-                        alt="priority">
-                <span class="todo-item-time-meta">
-                    {{ 5 - li['priority'] }}
                 </span>
             </span>
             {% endif %}
