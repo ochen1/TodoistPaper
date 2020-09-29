@@ -28,13 +28,12 @@ def getRet():
     with open('database.json', 'r') as f:
         return loadJSON(f)
 
+
 def todoistitem2dict(item):
-    if item['date_completed']:
-        if time() - int(mktime(strptime(item['date_completed'], "%Y-%m-%dT%H:%M:%SZ"))) > 86400:
-            return None
-    item_duedate = item['due']
-    if item_duedate is not None:
-        item_duedate = item_duedate['date']
+    for check_principle in [item['date_completed']]:
+        if check_principle:
+            if time() - int(mktime(strptime(check_principle, "%Y-%m-%dT%H:%M:%SZ"))) > 86400:
+                return None
     content, flags, arguments = argparse(item['content'])
     time_required = None
     if 'time' in arguments:
@@ -43,8 +42,8 @@ def todoistitem2dict(item):
         'name': content,
         'name-zh': translate2zh(content),
         'author': item['added_by_uid'],
-        'written': item['date_added'],
-        'due': item_duedate,
+        'written': ' '.join(item['date_added'].rstrip('Z').split('T')),
+        'due': ' '.join(item['due']['date'].rstrip('Z').split('T')) if item['due'] is not None else item['due'],
         'priority': item['priority'],
         'parent-project': item['project_id'],
         'done': False if item['date_completed'] is None else True,
