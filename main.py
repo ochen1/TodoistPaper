@@ -24,6 +24,23 @@ def getRet():
     with open('database.json', 'r') as f:
         return loadJSON(f)
 
+def todoistitem2dict(item):
+    item_duedate = item['due']
+    if item_duedate is not None:
+        item_duedate = item_duedate['date']
+    i_dict = {
+        'name': item['content'],
+        'name-zh': translate2zh(item['content']),
+        'author': item['added_by_uid'],
+        'written': item['date_added'],
+        'due': item_duedate,
+        'priority': item['priority'],
+        'parent-project': item['project_id'],
+        'done': False if item['date_completed'] is None else True,
+        'date_completed': item['date_completed']
+    }
+    return i_dict
+
 
 def update():
     try:
@@ -51,20 +68,15 @@ def update():
         # Tasks
         od['items'] = list()
         for item in api.state['items']:
-            item_duedate = item['due']
-            if item_duedate is not None:
-                item_duedate = item_duedate['date']
             od['items'].append(
-                {
-                    'name': item['content'],
-                    'name-zh': translate2zh(item['content']),
-                    'author': item['added_by_uid'],
-                    'written': item['date_added'],
-                    'due': item_duedate,
-                    'priority': item['priority'],
-                    'parent-project': item['project_id']
-                }
+                todoistitem2dict(item)
             )
+        # Completed Tasks
+        for project_id in [project['id'] for project in api.state['projects']]:
+            for item in api.items.get_completed(project_id):
+                od['items'].append(
+                    todoistitem2dict(item)
+                )
         od['meta'] = {
             'users-count': len(od['users']),
             'tasks-count': len(od['items'])
@@ -78,6 +90,7 @@ if __name__ == '__main__':
     try:
         while True:
             update()
+            print("Updated.")
             sleep(3600 - (time() % 3600))
     except KeyboardInterrupt:
         print()
