@@ -5,6 +5,7 @@ from googletrans import Translator
 
 from todoist import TodoistAPI
 from time import time, sleep
+from time import strptime, mktime
 from json import load as loadJSON
 from json import dump as dumpJSON
 from json.decoder import JSONDecodeError
@@ -25,6 +26,9 @@ def getRet():
         return loadJSON(f)
 
 def todoistitem2dict(item):
+    if item['date_completed']:
+        if time() - int(mktime(strptime(item['date_completed'], "%Y-%m-%dT%H:%M:%SZ"))) > 86400:
+            return None
     item_duedate = item['due']
     if item_duedate is not None:
         item_duedate = item_duedate['date']
@@ -77,6 +81,7 @@ def update():
                 od['items'].append(
                     todoistitem2dict(item)
                 )
+        od['items'] = list(filter(lambda filter_item: filter_item is not None, od['items']))
         od['meta'] = {
             'users-count': len(od['users']),
             'tasks-count': len(od['items'])
