@@ -33,7 +33,7 @@ def main():
             litems=litems,
             pagination={
                 'page': round(start / perpage) + 1,
-                'totalPages': ceil(perpage / len(db['items'])) + 2,
+                'totalPages': ceil(len(db['items']) / perpage),
                 'perpage': perpage,
                 'first_page_url': '/?after=%i&perpage=%i' % (0, perpage),
                 'last_page_url': '/?after=%i&perpage=%i' % (len(db['items']) - len(db['items']) % perpage, perpage),
