@@ -49,7 +49,7 @@ def todoistitem2dict(item):
 def update():
     try:
         with open('database.json', 'r') as f:
-            if time() - loadJSON(f)['last_update'] > 1000:
+            if time() - loadJSON(f)['last_update'] < 1000:
                 return getRet()
     except (FileNotFoundError, JSONDecodeError, KeyError):
         pass
