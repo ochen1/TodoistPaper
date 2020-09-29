@@ -20,7 +20,7 @@ def main():
         )
         perpage = request.args.get(
             'perpage',
-            default=10,
+            default=8,
             type=int
         )
         end = min([
