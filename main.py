@@ -10,6 +10,9 @@ from json import load as loadJSON
 from json import dump as dumpJSON
 from json.decoder import JSONDecodeError
 
+from argParse import argparse
+from datetimeParser import parse_timedelta
+
 api = TodoistAPI()
 api.user.login(getenv("EMAIL"), getenv("PASSWORD"))
 # api.sync()
@@ -32,16 +35,21 @@ def todoistitem2dict(item):
     item_duedate = item['due']
     if item_duedate is not None:
         item_duedate = item_duedate['date']
+    content, flags, arguments = argparse(item['content'])
+    time_required = None
+    if 'time' in arguments:
+        time_required = parse_timedelta(arguments['time'])
     i_dict = {
-        'name': item['content'],
-        'name-zh': translate2zh(item['content']),
+        'name': content,
+        'name-zh': translate2zh(content),
         'author': item['added_by_uid'],
         'written': item['date_added'],
         'due': item_duedate,
         'priority': item['priority'],
         'parent-project': item['project_id'],
         'done': False if item['date_completed'] is None else True,
-        'date_completed': item['date_completed']
+        'date_completed': item['date_completed'],
+        'time_required': time_required
     }
     return i_dict
 
