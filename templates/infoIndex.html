@@ -56,6 +56,28 @@
                 </span>
             </span>
             {% endif %}
+
+            {% if li['computer_time_required'] %}
+            <span class="todo-item-meta-item">
+                <img    class="icon"
+                        src="https://github.com/google/material-design-icons/blob/master/png/hardware/laptop/materialicons/48dp/1x/baseline_laptop_black_48dp.png?raw=true"
+                        alt="computer time required">
+                <span class="todo-item-time-meta">
+                    {{ timedelta2readable(seconds=li['computer_time_required']) }}
+                </span>
+            </span>
+            {% endif %}
+
+            {% if li['priority'] != 1 %}
+            <span class="todo-item-meta-item">
+                <img    class="icon"
+                        src="https://github.com/google/material-design-icons/blob/master/png/notification/priority_high/materialicons/48dp/1x/baseline_priority_high_black_48dp.png?raw=true"
+                        alt="priority">
+                <span class="todo-item-time-meta">
+                    {{ 5 - li['priority'] }}
+                </span>
+            </span>
+            {% endif %}
         </div>
     </section>
     {% endfor %}

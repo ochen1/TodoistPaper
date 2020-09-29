@@ -38,6 +38,9 @@ def todoistitem2dict(item):
     time_required = None
     if 'time' in arguments:
         time_required = parse_timedelta(arguments['time'])
+    computer_time_required = None
+    if 'screen' in arguments:
+        computer_time_required = parse_timedelta(arguments['screen'])
     i_dict = {
         'name': content,
         'name-zh': translate2zh(content),
@@ -48,7 +51,8 @@ def todoistitem2dict(item):
         'parent-project': item['project_id'],
         'done': False if item['date_completed'] is None else True,
         'date_completed': item['date_completed'],
-        'time_required': time_required
+        'time_required': time_required,
+        'computer_time_required': computer_time_required
     }
     return i_dict
 

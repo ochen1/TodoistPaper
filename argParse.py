@@ -1,5 +1,5 @@
 FLAGS_VALID = []
-FLAGS_VALID_ARGUMENT = ["time"]
+FLAGS_VALID_ARGUMENT = ["time", "screen"]
 
 
 def argparse(text):
