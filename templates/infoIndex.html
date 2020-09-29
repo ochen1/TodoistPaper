@@ -25,21 +25,20 @@
         </div>
         <div class="todo-item-meta-container">
             {% if li['due'] %}
-            <svg class="indicator-inline icon" viewBox="0 0 24 24" fill="#212121">
-                <path d="M0 0h24v24H0z" fill="none"/>
-                <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/>
-            </svg>
+            <!-- <i class="icon-calendar">&#xE935;</i> -->
+            <img    class="icon"
+                    src="https://github.com/google/material-design-icons/blob/master/png/action/calendar_today/materialicons/48dp/1x/baseline_calendar_today_black_48dp.png?raw=true"
+                    alt="due">
             <span class="todo-item-due-meta">
                 {{ li['due'] }}
             </span>
             {% endif %}
 
             {% if li['time_required'] %}
-            <svg class="indicator-inline icon" viewBox="0 0 24 24" fill="#212121">
-                <path d="M0 0h24v24H0z" fill="none"/>
-                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
-                <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-            </svg>
+            <!-- <i class="icon-clock">&#xE8B5;</i> -->
+            <img    class="icon"
+                    src="https://github.com/google/material-design-icons/blob/master/png/action/schedule/materialicons/48dp/1x/baseline_schedule_black_48dp.png?raw=true"
+                    alt="time required">
             <span class="todo-item-time-meta">
                 {{ timedelta2readable(seconds=li['time_required']) }}
             </span>

@@ -1,3 +1,5 @@
+/* @import "https://fonts.googleapis.com/icon?family=Material+Icons"; */
+
 div#content-main {
     margin: 0.4em 1ch;
     padding: 0.2em 1.4ch;
@@ -47,9 +49,14 @@ div#content-main > .todo-item > .todo-item-meta-container span {
     line-height: 1em;
 }
 
-svg.indicator-inline {
-    display: inline-block;
-    height: 1em;
+.icon {
+    display: inline;
+    height: 16px;
     position: relative;
-    top: 2px;
+    top: 2px
 }
+
+/* i[class^="icon"] {
+    font-family: 'Material Icons';
+    font-style: normal;
+} */
