@@ -27,12 +27,11 @@ def main():
             start + perpage - 1,
             len(db['items'])
         ])
-        litems = db['items'][start:end + 1]
         return render_template(
             "infoIndex.html",
             currTime=lambda: strftime("%c"),
-            litems=litems,
-            pagination={
+            litems=db['items'] if perpage < 1 else db['items'][start:end + 1],
+            pagination=None if perpage < 1 else {
                 'page': round(start / perpage) + 1,
                 'totalPages': max(1, ceil(len(db['items']) / perpage)),
                 'perpage': perpage,

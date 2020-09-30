@@ -93,6 +93,7 @@
     </section>
     {% endfor %}
 </div>
+{% if pagination %}
 <div class="pager">
     <a id="pager-most-previous" href="{{ pagination['first_page_url'] }}" class="nav-btn nav-most-previous">«</a>
     <a id="pager-previous" href="{{ pagination['prev_page_url'] }}" class="nav-btn nav-previous">‹</a>
@@ -101,6 +102,7 @@
     <br>
     <span>Page {{ pagination.page }} / {{ pagination.totalPages }}</span>
 </div>
+{% endif %}
 
 <footer>
     <span>
