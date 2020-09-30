@@ -5,6 +5,9 @@ div#content-main {
     border-radius: 10px;
     min-height: 50vh;
     overflow-y: hidden;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.6);
 }
 
 div#content-main > .todo-item {
@@ -18,7 +21,7 @@ div#content-main > .todo-item {
     cursor: pointer;
 }
 
-div#content-main > .todo-item:after {
+div#content-main > .todo-item > .todo-item-name:after {
     clear: both;
     content: ' ';
     display: table;
@@ -29,15 +32,51 @@ div#content-main > .todo-item:not(:last-child) {
     margin-bottom: 1em;
 }
 
-div#content-main > .todo-item span {
+div#content-main > .todo-item > .todo-item-name span {
     line-height: 1.25em;
     margin: 0.2em 0;
 }
 
-div#content-main > .todo-item span:nth-of-type(1) {
+div#content-main > .todo-item > .todo-item-name span:nth-of-type(1) {
     float: left;
 }
 
-div#content-main > .todo-item span:nth-of-type(2) {
+div#content-main > .todo-item > .todo-item-name span:nth-of-type(2) {
     float: right;
+}
+
+div#content-main > .todo-item > .todo-item-meta-container span {
+    height: 1em;
+    line-height: 1em;
+}
+
+.todo-item-meta-item:not(:last-child) {
+    margin-right: 2ch;
+}
+
+.icon {
+    display: inline;
+    height: 16px;
+    position: relative;
+    top: 2px
+}
+
+.icon.todo-item-name-prefix {
+    position: relative;
+    top: 5px;
+    float: left;
+    margin-right: 0.4ch;
+}
+
+/* i[class^="icon"] {
+    font-family: 'Material Icons';
+    font-style: normal;
+} */
+
+div#content-main > .todo-item.done {
+    opacity: 80%;
+}
+
+div#content-main > .todo-item.done * {
+    text-decoration: line-through;
 }
