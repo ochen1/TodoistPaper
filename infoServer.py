@@ -28,6 +28,9 @@ def main():
             len(db['items'])
         ])
         litems = db['items'] if perpage < 1 else db['items'][start:end + 1]
+        pid = request.args.get('project', type=int)
+        if pid is not None:
+            litems = filter(lambda item: item['parent-project'] == pid, litems)
         return render_template(
             "infoIndex.html",
             currTime=lambda: strftime("%c"),
